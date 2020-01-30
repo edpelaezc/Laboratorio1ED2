@@ -7,36 +7,42 @@ using Lab02EDII.Models;
 
 namespace Lab02EDII.BTree
 {
-    public class stringComparer : IComparer
+    public class keyComparer : IComparer
     {
+        public delegate int compare(object aux, object aux2);
+        compare compareElements;
+        public void compareElementsDelegate(compare cmp) {
+            compareElements = cmp;
+        }
         // Call CaseInsensitiveComparer.Compare with the parameters reversed.
-        public int Compare(Object x, Object y)
-        {
-            return (new CaseInsensitiveComparer()).Compare(y, x);
+        public int Compare(object x, object y) {
+            return compareElements(x, y);
         }
     }
 
     public class Node<T>
-    {                
+    {
+        public keyComparer comparer = new keyComparer();
         T[] data { get; set; }
         Node<T>[] children;
-        Node<T> father;        
+        Node<T> father;
 
-        public Node(int order){
+        public Node(int order)
+        {
             data = new T[order];
             children = new Node<T>[order];            
         }
 
-        public Node(int order, Node<T> father) {
+        public Node(int order, Node<T> nodeFather)
+        {
             data = new T[order];
             children = new Node<T>[order];
-            this.father = father;
-
+            father = nodeFather;
         }
 
-        public void Sort()
+        public void sortData()
         {
-
+            Array.Sort(children, comparer);
         }
 
         internal bool isLeaf
