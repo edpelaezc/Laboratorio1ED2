@@ -7,39 +7,80 @@ using Lab02EDII.Models;
 
 namespace Lab02EDII.BTree
 {
+    public class keyComparer : IComparer
+    {
+        public delegate int compare(object aux, object aux2);
+        compare compareElements;
+        public void compareElementsDelegate(compare cmp)
+        {
+            compareElements = cmp;
+        }
+        // Call CaseInsensitiveComparer.Compare with the parameters reversed.
+        public int Compare(object x, object y)
+        {
+            return compareElements(x, y);
+        }
+    }
     public class Node<T>
-    {        
-        public T[] data { get; set; }
-        public Node<T>[] children;
-        public Node<T> father;
+    {
+        private keyComparer keyComparer = new keyComparer();
+        public T[] Data { get; set; }
+        public Node<T>[] Children { get; set; }
+        public Node<T> Father { get; set; }
 
         public Node(int order)
         {
-            data = new T[order];
-            children = new Node<T>[order];            
+            Data = new T[order - 1];
+            Children = new Node<T>[order];            
         }
 
         public Node(int order, Node<T> nodeFather)
         {
-            data = new T[order];
-            children = new Node<T>[order];
-            father = nodeFather;
+            Data = new T[order];
+            Children = new Node<T>[order];
+            Father = nodeFather;
         }
 
-        internal bool isLeaf
+        internal bool IsLeaf => Children[0] == null;
+
+        internal bool Full => Data[Data.Length - 1] != null;
+
+        internal int AproxPosition(T data)
         {
-            get
+            int position = Data.Length;
+            for (int i = 0; i < Data.Length; i++)
             {
-                return children[0] == null;
+                if ((keyComparer.Compare(Data[i], data) < 0) || (Data[i] == null))
+                {
+                    position = i;
+                }
             }
+            return position;
         }
 
-        internal bool full
+        internal void InsertData(T data)
         {
-            get
+            if (!Full)
             {
-                return children[children.Length - 1] != null;
+                for (int i = 0; i < Data.Length; i++)
+                {
+                    if (Data[i] == null)
+                    {
+                        Data[i] = data;
+                        i = Data.Length;
+                    }                    
+                }
             }
+        }
+        
+        internal void DeleteData(T data)
+        {
+
+        }
+        
+        private void SplitNode()
+        {
+            
         }
     }
 }

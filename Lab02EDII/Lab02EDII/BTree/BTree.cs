@@ -6,57 +6,46 @@ using System.Threading.Tasks;
 
 namespace Lab02EDII.BTree
 {
-    public class keyComparer : IComparer
-    {
-        public delegate int compare(object aux, object aux2);
-        compare compareElements;
-        public void compareElementsDelegate(compare cmp)
-        {
-            compareElements = cmp;
-        }
-        // Call CaseInsensitiveComparer.Compare with the parameters reversed.
-        public int Compare(object x, object y)
-        {
-            return compareElements(x, y);
-        }
-    }
-
     public class BTree<T>
     {
         public keyComparer comparer = new keyComparer();
         Node<T> root;
         int order; 
+
+        public BTree()
+        {
+            this.root = null;
+            this.order = 5;
+        }
+
         public BTree(int order) {
-            root = null;
+            this.root = null;
             this.order = order;
         }
 
-        public void add(T element) {
+        public void Add(T element) {
             if (this.root == null) 
             { //Si la raiz es nula
-                root = new Node<T>(order);
-
-                for (int i = 0; i < order; i++)
-                {
-                    root.data[0] = element;
-                }
+                this.root = new Node<T>(this.order);
+                root.Data[0] = element;
+                root.Children = null;
             }
             else 
             {
-                insert(this.root, element);
+                Insert(this.root, element);
             }
         }
 
-        private void insert(Node<T> root, T element) {
-            if (root.isLeaf) // si es un nodo hoja 
+        private void Insert(Node<T> root, T element) {
+            if (root.IsLeaf) // si es un nodo hoja 
             {
-                if (!root.full) { // si el nodo hoja no está lleno 
+                if (!root.Full) { // si el nodo hoja no está lleno 
                     int i = 0;
-                    while (root.data[i] != null)
+                    while (root.Data[i] != null)
                     {
                         i++;
                     }
-                    root.data[i] = element;
+                    root.Data[i] = element;
                 }
             }
             else
@@ -64,6 +53,7 @@ namespace Lab02EDII.BTree
 
             }
         }
+        
         //public void sortData()
         //{
         //    Array.Sort(children, comparer);
