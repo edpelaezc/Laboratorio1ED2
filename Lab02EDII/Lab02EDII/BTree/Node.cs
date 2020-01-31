@@ -45,18 +45,24 @@ namespace Lab02EDII.BTree
 
         internal bool Full => Data[Data.Length - 1] != null;
 
-        //internal int AproxPosition(T data)
-        //{
-        //    int position = Data.Length;
-        //    for (int i = 0; i < Data.Length; i++)
-        //    {
-        //        if ((keyComparer.Compare(Data[i], data) < 0) || (Data[i] == null))
-        //        {
-        //            position = i;
-        //        }
-        //    }
-        //    return position;
-        //}
+        internal int AproxChild(T data)
+        {
+            int position = 0;
+            for (int i = 0; i < Data.Length; i++)
+            {                
+                if ((keyComparer.Compare(Data[i], data) < 0) || Data[i] == null)
+                {
+                    position = i;
+                    i = Data.Length;
+                }
+                if (i == Data.Length - 1)
+                {
+                    position = i + 1;
+                    i = Data.Length;
+                }
+            }
+            return position;
+        }
 
         internal void InsertData(T data)
         {
@@ -85,6 +91,20 @@ namespace Lab02EDII.BTree
         private void SplitNode()
         {
             
+        }
+
+        public int PositionInNode(T data)
+        {
+            int position = -1;
+            for (int i = 0; i < Data.Length; i++)
+            {
+                if (keyComparer.Compare(data, Data[i]) == 0)
+                {
+                    position = i;
+                    i = Data.Length;
+                }
+            }
+            return position;
         }
     }
 }
