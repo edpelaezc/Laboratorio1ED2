@@ -15,7 +15,7 @@ namespace Lab02EDII.BTree
         {
             compareElements = cmp;
         }
-        // Call CaseInsensitiveComparer.Compare with the parameters reversed.
+        //comparación en base al delegate enviado
         public int Compare(object x, object y)
         {
             return compareElements(x, y);
@@ -27,11 +27,13 @@ namespace Lab02EDII.BTree
         public T[] Data { get; set; }
         public Node<T>[] Children { get; set; }
         public Node<T> Father { get; set; }
+        public int order; 
 
         public Node(int order)
         {
             Data = new T[order - 1];
-            Children = new Node<T>[order];            
+            Children = new Node<T>[order];
+            this.order = order; 
         }
 
         public Node(int order, Node<T> nodeFather)
@@ -64,16 +66,16 @@ namespace Lab02EDII.BTree
             {
                 for (int i = 0; i < Data.Length; i++)
                 {
-                    if (Data[i] == null)
-                    {
+                    if (Data[i] == null) {
                         Data[i] = data;
                         i = Data.Length;
                     }                    
-                }                
+                }
+                Array.Sort(Data, keyComparer); //ordenar un arreglo con comparación especificada
             }
             else
             {
-                SplitNode();
+                SplitNode(data);
             }
         }
         
@@ -82,9 +84,25 @@ namespace Lab02EDII.BTree
 
         }
         
-        private void SplitNode()
+        private void SplitNode(T data)
         {
-            
+            T[] temp = new T[order];
+            T[] aux1 = new T[order - 1];
+            T[] aux2 = new T[order - 1];
+            for (int i = 0; i < Data.Length; i++)
+            {
+                temp[i] = Data[i];
+            }
+            temp[order - 1] = data;
+            Array.Sort(temp, keyComparer);
+
+            InsertData(Data[order/2]);
+
+            for (int i = 0; i < (order / 2); i++)
+            {
+                aux1[i] = temp[i];
+                aux2[i] = temp[(order / 2) + i + 1];
+            }
         }
     }
 }

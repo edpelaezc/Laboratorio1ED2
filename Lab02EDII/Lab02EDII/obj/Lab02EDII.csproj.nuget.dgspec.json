@@ -1,21 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\llaaj\\Documents\\Laboratorio1ED2\\Lab02EDII\\Lab02EDII\\Lab02EDII.csproj": {}
+    "C:\\GitHub\\Laboratorio1ED2\\Lab02EDII\\Lab02EDII\\Lab02EDII.csproj": {}
   },
   "projects": {
-    "C:\\Users\\llaaj\\Documents\\Laboratorio1ED2\\Lab02EDII\\Lab02EDII\\Lab02EDII.csproj": {
+    "C:\\GitHub\\Laboratorio1ED2\\Lab02EDII\\Lab02EDII\\Lab02EDII.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\llaaj\\Documents\\Laboratorio1ED2\\Lab02EDII\\Lab02EDII\\Lab02EDII.csproj",
+        "projectUniqueName": "C:\\GitHub\\Laboratorio1ED2\\Lab02EDII\\Lab02EDII\\Lab02EDII.csproj",
         "projectName": "Lab02EDII",
-        "projectPath": "C:\\Users\\llaaj\\Documents\\Laboratorio1ED2\\Lab02EDII\\Lab02EDII\\Lab02EDII.csproj",
-        "packagesPath": "C:\\Users\\llaaj\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\llaaj\\Documents\\Laboratorio1ED2\\Lab02EDII\\Lab02EDII\\obj\\",
+        "projectPath": "C:\\GitHub\\Laboratorio1ED2\\Lab02EDII\\Lab02EDII\\Lab02EDII.csproj",
+        "packagesPath": "C:\\Users\\edanP\\.nuget\\packages\\",
+        "outputPath": "C:\\GitHub\\Laboratorio1ED2\\Lab02EDII\\Lab02EDII\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\llaaj\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\edanP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
