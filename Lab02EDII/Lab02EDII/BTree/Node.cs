@@ -89,8 +89,7 @@ namespace Lab02EDII.BTree
             T[] temp = new T[order];
             T[] aux1 = new T[order - 1];
             T[] aux2 = new T[order - 1];
-            for (int i = 0; i < Data.Length; i++)
-            {
+            for (int i = 0; i < Data.Length; i++) {
                 temp[i] = Data[i];
             }
             temp[order - 1] = data;
