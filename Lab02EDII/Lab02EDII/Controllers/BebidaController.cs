@@ -30,7 +30,7 @@ namespace Lab02EDII.Controllers
 
         // POST: api/Bebida
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] Bebida value)
         {
         }
 

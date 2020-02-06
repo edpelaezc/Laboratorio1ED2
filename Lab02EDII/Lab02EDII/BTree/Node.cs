@@ -101,38 +101,49 @@ namespace Lab02EDII.BTree
             temp[order - 1] = data;
             Array.Sort(temp, keyComparer);
 
-            Father.InsertData(temp[order / 2]); // insertar el dato en medio del nodo en el padre. 
-            
-            for (int i = 0; i < (order / 2); i++)
+            if (Father == null)
             {
-                aux1[i] = temp[i];
-                aux2[i] = temp[(order / 2) + i + 1];
+                Node<T> auxNode = new Node<T>(order);
+                auxNode.InsertData(temp[order / 2]); // insertar el dato en medio del nodo en el padre. 
+                auxNode.Children[0].Data = aux1;
+                auxNode.Children[1].Data = aux2;
             }
+            else
+            {
+                Father.InsertData(temp[order / 2]); // insertar el dato en medio del nodo en el padre. 
 
-            Data = aux1;
-            Node<T>[] auxChildren = Father.Children;
-            
-            int cont = 0;
-            for (int i = 0; i < order; i++)
-            {                
-                if (Father.Children[i].Data == aux1)
+                for (int i = 0; i < (order / 2); i++)
                 {
-                    if (Father.Children[i + 1] != null) { 
-                        Father.Children[i + 1].Data = aux2; 
+                    aux1[i] = temp[i];
+                    aux2[i] = temp[(order / 2) + i + 1];
+                }
+
+                Data = aux1;
+                Node<T>[] auxChildren = Father.Children;
+
+                int cont = 0;
+                for (int i = 0; i < order; i++)
+                {
+                    if (Father.Children[i].Data == aux1)
+                    {
+                        if (Father.Children[i + 1] != null)
+                        {
+                            Father.Children[i + 1].Data = aux2;
+                        }
+                        else
+                        {
+                            Father.Children[i + 1] = new Node<T>(order);
+                            Father.Children[i + 1].Data = aux2;
+                        }
+                        cont++;
                     }
-                    else { 
-                        Father.Children[i + 1] = new Node<T>(order);
-                        Father.Children[i + 1].Data = aux2;
+                    else
+                    {
+                        Father.Children[cont] = auxChildren[i];
                     }
                     cont++;
                 }
-                else
-                {
-                    Father.Children[cont] = auxChildren[i];
-                }
-                cont++;
             }
-
         }
 
         private void AddChildren() { 
