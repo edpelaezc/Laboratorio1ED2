@@ -25,11 +25,13 @@ namespace Lab02EDII.Controllers
 		{
 			Bebida objeto1 = (Bebida)ob1;
 			Bebida objeto2 = (Bebida)ob2;
-			return String.Compare(objeto1.nombre, objeto2.nombre);
+			return objeto1.nombre.CompareTo(objeto2.nombre);
+			//return String.Compare(objeto1.nombre, objeto2.nombre);
 		}
 
 		public Data() {
-			myTree.root.keyComparer.compareElementsDelegate(CompararBebida);
+			myTree.keyComparer.compareElementsDelegate(CompararBebida);
+			//myTree.root.keyComparer.compareElementsDelegate(CompararBebida);
 		}
 
 	}
