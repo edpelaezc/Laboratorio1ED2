@@ -17,8 +17,7 @@ namespace Lab02EDII.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
-            BTree<Bebida> myTree = new BTree<Bebida>(5);      
+            return new string[] { "value1", "value2" };                  
         }
 
         // GET: api/Bebida/5
@@ -32,6 +31,7 @@ namespace Lab02EDII.Controllers
         [HttpPost]
         public void Post([FromBody] Bebida value)
         {
+            Data.Instance.myTree.Add(value);
         }
 
         // PUT: api/Bebida/5

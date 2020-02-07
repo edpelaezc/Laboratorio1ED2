@@ -7,7 +7,7 @@ namespace Lab02EDII.Models
 {
     public class Bebida
     {
-        public int nombre { get; set; }
+        public string nombre { get; set; }
         public string sabor { get; set; }
         public string volumen { get; set; }
         public int precio { get; set; }

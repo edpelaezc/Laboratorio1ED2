@@ -8,17 +8,17 @@ namespace Lab02EDII.BTree
 {
     public class BTree<T>
     {
-        Node<T> root;
+        public Node<T> root;
         int order; 
 
-        public BTree()
-        {
-            this.root = null;
-            this.order = 5;
-        }
+        //public BTree()
+        //{
+        //    this.root = null;
+        //    this.order = 5;
+        //}
 
         public BTree(int order) {
-            this.root = null;
+            this.root = new Node<T>(order);
             this.order = order;
         }
 
@@ -28,8 +28,8 @@ namespace Lab02EDII.BTree
 
         private void Insert(Node<T> root, T element) {
 
-            if (!(root.PositionInNode(element) != -1)) // el dato no está incluido en el nodo
-            {
+            //if (!(root.PositionInNode(element) != -1)) // el dato no está incluido en el nodo
+            //{
                 if (root.IsLeaf) // si es un nodo hoja 
                 {
                     root.InsertData(element);
@@ -38,7 +38,7 @@ namespace Lab02EDII.BTree
                 {
                     Insert(root.Children[root.AproxChild(element)], element);
                 }
-            }            
+            //}            
         }
         
         //public void sortData()
