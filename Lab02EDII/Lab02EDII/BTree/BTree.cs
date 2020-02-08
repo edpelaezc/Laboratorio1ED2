@@ -191,6 +191,10 @@ namespace Lab02EDII.BTree
             return position;
         }
 
+        public T getElement(K element) {
+            return ViewData(this.root, element);
+        }
+
         public T ViewData(Node<T> root, K data) {
             T response = default(T);
             //recorrer el arreglo de datos del nodo 
@@ -212,6 +216,12 @@ namespace Lab02EDII.BTree
                 return response;
             }
             
+        }
+
+        public List<T> getList() {
+            elements = new List<T>();
+            Traverse(this.root);
+            return elements;
         }
 
         public void Traverse(Node<T> root) {            

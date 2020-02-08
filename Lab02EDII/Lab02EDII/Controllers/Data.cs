@@ -21,7 +21,7 @@ namespace Lab02EDII.Controllers
 
 		public BTree<Bebida, string> myTree = new BTree<Bebida, string>(5);
 
-		static int CompararBebida(object ob1, object ob2)
+		public static int CompararBebida(object ob1, object ob2)
 		{
 			Bebida objeto1 = (Bebida)ob1;
 			Bebida objeto2 = (Bebida)ob2;

@@ -17,18 +17,17 @@ namespace Lab02EDII.Controllers
         [HttpGet]
         public IEnumerable<Bebida> Get()
         {
-            List<Bebida> myList = new List<Bebida>();
-            Data.Instance.myTree.elements = new List<Bebida>();
-            Data.Instance.myTree.Traverse(Data.Instance.myTree.root);
-            myList = Data.Instance.myTree.elements;
+            List<Bebida> myList = new List<Bebida>();                        
+            myList = Data.Instance.myTree.getList();
+            myList.Sort(Data.CompararBebida);
             return myList;               
         }
 
         // GET: api/Bebida/5
         [HttpGet("{id}", Name = "Get")]
         public Bebida Get(string id)
-        {            
-            return Data.Instance.myTree.ViewData(Data.Instance.myTree.root, id);
+        {
+            return Data.Instance.myTree.getElement(id);
         }
 
         // POST: api/Bebida
