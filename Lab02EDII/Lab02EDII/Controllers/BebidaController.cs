@@ -15,9 +15,12 @@ namespace Lab02EDII.Controllers
     {
         // GET: api/Bebida
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<Bebida> Get()
         {
-            return new string[] { "value1", "value2" };                  
+            List<Bebida> myList = new List<Bebida>();
+            Data.Instance.myTree.Traverse(Data.Instance.myTree.root);
+            myList = Data.Instance.myTree.elements;
+            return myList;               
         }
 
         // GET: api/Bebida/5

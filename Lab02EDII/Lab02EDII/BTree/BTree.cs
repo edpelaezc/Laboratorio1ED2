@@ -22,6 +22,7 @@ namespace Lab02EDII.BTree
     }
     public class BTree<T, K>
     {
+        public List<T> elements = new List<T>();
         public delegate int search(K ob1, T ob2);
         search searchElements; 
         public keyComparer<T> keyComparer = new keyComparer<T>();
@@ -192,6 +193,7 @@ namespace Lab02EDII.BTree
 
         public T ViewData(Node<T> root, K data) {
             T response = default(T);
+            //recorrer el arreglo de datos del nodo 
             for (int i = 0; i < root.Data.Count; i++)
             {
                 if (searchElements(data, root.Data[i]) == 0)
@@ -210,6 +212,14 @@ namespace Lab02EDII.BTree
                 return response;
             }
             
+        }
+
+        public void Traverse(Node<T> root) {            
+            for (int i = 0; i < root.Children.Count; i++)
+            {
+                Traverse(root.Children[i]);
+            }
+            elements.AddRange(root.Data);
         }
         
 
