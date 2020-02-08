@@ -18,6 +18,7 @@ namespace Lab02EDII.Controllers
         public IEnumerable<Bebida> Get()
         {
             List<Bebida> myList = new List<Bebida>();
+            Data.Instance.myTree.elements = new List<Bebida>();
             Data.Instance.myTree.Traverse(Data.Instance.myTree.root);
             myList = Data.Instance.myTree.elements;
             return myList;               
