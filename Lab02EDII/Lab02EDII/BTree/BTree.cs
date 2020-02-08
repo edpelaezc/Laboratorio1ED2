@@ -20,21 +20,21 @@ namespace Lab02EDII.BTree
             return compareElements(x, y);
         }
     }
-    public class BTree<T>
+    public class BTree<T, K>
     {
+        public delegate int search(K ob1, T ob2);
+        search searchElements; 
         public keyComparer<T> keyComparer = new keyComparer<T>();
         public Node<T> root;
         int order; 
 
-        //public BTree()
-        //{
-        //    this.root = null;
-        //    this.order = 5;
-        //}
-
         public BTree(int order) {
             this.root = new Node<T>(order);
             this.order = order;
+        }
+        public void searchElementsDelegate(search cmp)
+        {
+            searchElements = cmp;
         }
 
         public void Add(T element) {
@@ -170,10 +170,48 @@ namespace Lab02EDII.BTree
             }
             return position;
         }
-        //public void sortData()
-        //{
-        //    Array.Sort(children, comparer);
-        //}
+
+        public int SearchAproxChild(Node<T> root, K data)
+        {
+            int position = 0;
+            for (int i = 0; i < root.Data.Count; i++)
+            {
+                if ((searchElements(data, root.Data[i]) < 0) || root.Data[i] == null)
+                {
+                    position = i;
+                    i = root.Data.Count;
+                }
+                if (i == root.Data.Count - 1)
+                {
+                    position = i + 1;
+                    i = root.Data.Count;
+                }
+            }
+            return position;
+        }
+
+        public T ViewData(Node<T> root, K data) {
+            T response = default(T);
+            for (int i = 0; i < root.Data.Count; i++)
+            {
+                if (searchElements(data, root.Data[i]) == 0)
+                {
+                    response = root.Data[i];
+                }
+            }
+
+            if (response == null) // si es un nodo hoja 
+            {
+                int position = SearchAproxChild(root, data);
+                return ViewData(root.Children[position], data);
+            }
+            else
+            {
+                return response;
+            }
+            
+        }
+        
 
     }
 }

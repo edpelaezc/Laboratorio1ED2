@@ -7,23 +7,8 @@ using Lab02EDII.Models;
 
 namespace Lab02EDII.BTree
 {
-    //public class keyComparer<T> : IComparer<T>
-    //{
-    //    public delegate int compare(T aux, T aux2);
-    //    compare compareElements;
-    //    public void compareElementsDelegate(compare cmp)
-    //    {
-    //        compareElements = cmp;
-    //    }
-    //    //comparación en base al delegate enviado
-    //    public int Compare(T x, T y)
-    //    {
-    //        return compareElements(x, y);
-    //    }
-    //}
     public class Node<T>
-    {
-        public keyComparer<T> keyComparer = new keyComparer<T>();
+    {        
         public List<T> Data { get; set; }
         public List<Node<T>> Children { get; set; }
         public Node<T> Father { get; set; }

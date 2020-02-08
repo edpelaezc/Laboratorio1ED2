@@ -22,9 +22,9 @@ namespace Lab02EDII.Controllers
 
         // GET: api/Bebida/5
         [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
+        public Bebida Get(string id)
+        {            
+            return Data.Instance.myTree.ViewData(Data.Instance.myTree.root, id);
         }
 
         // POST: api/Bebida
